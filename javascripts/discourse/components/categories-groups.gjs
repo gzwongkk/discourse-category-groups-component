@@ -159,10 +159,10 @@ export default class CategoriesGroups extends Component {
     const categoryClass = `.custom-category-group-${slug}`;
 
     if (storedCategories.includes(categoryClass)) {
-      storedCategories.removeObject(categoryClass);
+      storedCategories.splice(storedCategories.indexOf(categoryClass), 1);
       document.querySelector(categoryClass)?.classList.add("is-expanded");
     } else {
-      storedCategories.addObject(categoryClass);
+      storedCategories.push(categoryClass);
       document.querySelector(categoryClass)?.classList.remove("is-expanded");
     }
 
