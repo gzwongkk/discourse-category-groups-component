@@ -2,7 +2,12 @@ en:
   theme_metadata:
     description: "custom category page with group settings"
     settings:
-      category_groups: "Define each group with a name and the categories it contains (in display order). Use the translations field to localize a group's name per locale (e.g. locale 'fr')."
+      category_groups:
+        description: "Define each group with a name, accent color, and the categories it contains (in display order). Use the translations field to localize a group's name per locale (e.g. locale 'fr')."
+        schema:
+          properties:
+            color:
+              description: "Optional group accent in six-digit hex format, e.g. #B5E1E6. Known VisLab groups use the coordinated palette by default."
       extra_links:
         description: "Extra links that can be mixed into the category list. Set a link's \"show after\" category to position it after that category."
         schema:

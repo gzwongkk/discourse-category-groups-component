@@ -22,6 +22,16 @@ import { slugify } from "discourse/lib/utilities";
 import I18nInstance, { i18n } from "discourse-i18n";
 import CategoryGroupExtraLink from "./category-group-extra-link";
 
+const DEFAULT_GROUP_COLORS = {
+  "lab-operations": "#B5E1E6",
+  "research-development": "#D8E8C8",
+  "learning-routine": "#D8D1F0",
+  "guides-examples": "#FFEEDB",
+  community: "#FFD4CA",
+};
+
+const DEFAULT_GROUP_COLOR = "#E2E8F0";
+
 const ExtraLink = class {
   constructor(args) {
     this.isExtraLink = true;
@@ -63,6 +73,20 @@ export default class CategoriesGroups extends Component {
 
   get compactRows() {
     return this.mode === "rows";
+  }
+
+  groupColor(color, slug) {
+    const candidate =
+      color || DEFAULT_GROUP_COLORS[slug] || DEFAULT_GROUP_COLOR;
+    const normalized = candidate.startsWith("#") ? candidate : `#${candidate}`;
+
+    return /^#[0-9a-f]{6}$/i.test(normalized)
+      ? normalized.toUpperCase()
+      : DEFAULT_GROUP_COLOR;
+  }
+
+  groupStyle(color) {
+    return htmlSafe(`--category-group-color: ${color};`);
   }
 
   categoryName(category) {
@@ -112,9 +136,12 @@ export default class CategoriesGroups extends Component {
         // `slug` is derived from the default name so it stays stable across
         // locales (used for CSS classes and localStorage collapse state),
         // while `name` is the localized label shown to the user.
+        const slug = slugify(obj.name);
+
         groups.push({
           name: this.localizedGroupName(obj),
-          slug: slugify(obj.name),
+          slug,
+          color: this.groupColor(obj.color, slug),
           items,
         });
       }
@@ -135,6 +162,7 @@ export default class CategoriesGroups extends Component {
       categoryGroupList.push({
         name: i18n(themePrefix("ungrouped_categories_title")),
         slug: "ungrouped",
+        color: DEFAULT_GROUP_COLOR,
         items: withLinks(ungroupedCategories),
       });
     }
@@ -143,6 +171,7 @@ export default class CategoriesGroups extends Component {
       categoryGroupList.push({
         name: i18n(themePrefix("muted_categories_title")),
         slug: "muted",
+        color: DEFAULT_GROUP_COLOR,
         items: mutedCategories,
       });
     }
@@ -206,6 +235,7 @@ export default class CategoriesGroups extends Component {
           {{#each this.categoryGroupList as |t|}}
             <tbody
               class="custom-category-group-{{t.slug}} is-expanded"
+              style={{this.groupStyle t.color}}
               aria-labelledby="category-group-{{t.slug}}"
             >
               <tr class="category-group-heading">
@@ -239,7 +269,10 @@ export default class CategoriesGroups extends Component {
             {{didInsert this.initializeLocalStorage}}
           >
             {{#each this.categoryGroupList as |t|}}
-              <div class="custom-category-group-{{t.slug}} is-expanded">
+              <div
+                class="custom-category-group-{{t.slug}} is-expanded"
+                style={{this.groupStyle t.color}}
+              >
                 <a
                   {{on "click" (fn this.toggleCategories t.slug)}}
                   href

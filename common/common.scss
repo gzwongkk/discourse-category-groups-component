@@ -107,7 +107,13 @@
   .category-group-heading {
     td {
       padding: 0.65em 0.5em 0.35em;
-      border-bottom: 1px solid var(--primary-low);
+      background: color-mix(
+        in srgb,
+        var(--category-group-color) 58%,
+        var(--secondary)
+      );
+      border-bottom: 1px solid
+        color-mix(in srgb, var(--category-group-color) 62%, var(--primary));
     }
 
     .custom-category-group-toggle {
@@ -116,7 +122,11 @@
 
       h2 {
         margin: 0 !important;
-        color: var(--primary-medium);
+        color: color-mix(
+          in srgb,
+          var(--category-group-color) 32%,
+          var(--primary)
+        );
         font-size: var(--font-0);
         font-weight: 600;
         line-height: 1.35;
@@ -126,7 +136,11 @@
       .d-icon {
         top: 0;
         margin: 0;
-        color: var(--primary-medium);
+        color: color-mix(
+          in srgb,
+          var(--category-group-color) 45%,
+          var(--primary)
+        );
         font-size: var(--font-down-1);
       }
 

@@ -32,6 +32,7 @@ RSpec.describe "Category Groups", system: true do
       [
         {
           "name" => "Default Categories",
+          "color" => "#B5E1E6",
           "categories" => [category.id],
           "translations" => [{ "locale" => "fr", "name" => "Catégories par défaut" }],
         },
@@ -110,6 +111,13 @@ RSpec.describe "Category Groups", system: true do
     visit "/categories"
 
     expect(page).to have_css(".category-box-heading .emoji[alt='wave']", count: 1)
+  end
+
+  it "applies the configured group color as a scoped design token" do
+    visit "/categories"
+
+    group = find(".custom-category-group-default-categories")
+    expect(group[:style]).to include("--category-group-color: #B5E1E6")
   end
 
   it "keeps the native latest topics column beside compact category groups" do

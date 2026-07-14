@@ -8,6 +8,8 @@ category_groups:
       name:
         type: string
         required: true
+      color:
+        type: string
       categories:
         type: categories
       translations:
