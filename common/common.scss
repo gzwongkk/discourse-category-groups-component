@@ -345,6 +345,12 @@
 @if $show_on_mobile == "true" {
   // hides the default categories layout on mobile, so the custom layout appears
   .mobile-view {
+    // Core decides whether these desktop filters exist when the route model is
+    // first loaded. Hide them immediately when a live resize enters mobile.
+    .category-breadcrumb {
+      display: none;
+    }
+
     .category-list.with-topics {
       display: none;
     }
