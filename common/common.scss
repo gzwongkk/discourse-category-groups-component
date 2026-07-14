@@ -156,7 +156,7 @@
     }
   }
 
-  tr:not(.category-group-heading) {
+  tbody tr:not(.category-group-heading) {
     // Keep every category row on the same rhythm as a row with an unread
     // indicator, so rows do not collapse when that secondary line is absent.
     height: 3.45em;
@@ -184,7 +184,7 @@
     }
 
     .category h3 {
-      font-size: var(--font-up-1);
+      font-size: var(--font-0);
       font-weight: 500;
       line-height: 1.4;
     }

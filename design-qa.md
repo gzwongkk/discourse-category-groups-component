@@ -13,12 +13,12 @@ The source and implementation were opened together in one comparison input at th
 
 ## Focused comparison evidence
 
-A separate crop was not required because the annotated rail, category title, Latest title, and logo are legible in the full-size 1265 × 711 comparison. Computed-style inspection supplied the precise focused evidence: the rail and ribbon both begin at x=88.22px; left category names and right Latest titles are both 18.3792px; and the logo link now has 16px right padding.
+A separate crop was not required because the annotated rail, category title, Latest title, and logo are legible in the full-size 1265 × 711 comparison. Computed-style inspection supplied the precise focused evidence: the rail and ribbon both begin at x=88.22px and the logo link has 16px right padding.
 
 ## Required fidelity surfaces
 
-- Fonts and typography: passed. The existing Inter stack is preserved. Left category names now match Latest's 18.38px scale and use a restrained 500 weight; left topic counts also use 500 instead of 700. Wrapping and line heights remain native to Discourse.
-- Spacing and layout rhythm: passed. Every category row retains the unread-row rhythm (55.19px), the rail now shares the ribbon's outer edge, and the logo link reserves 16px on its right. Table tracks and Latest-column proportions remain intact.
+- Fonts and typography: passed. The existing Inter stack is preserved. Group headings use 16px/600 and category names use 16px/500, establishing hierarchy beneath the 18.38px Latest titles. Left topic counts also use 500 instead of 700.
+- Spacing and layout rhythm: passed. Every body category row retains the unread-row rhythm (55.19px), while the header keeps its native 36.48px height and aligns with Latest. The rail shares the ribbon's outer edge, and the logo link reserves 16px on its right.
 - Colors and visual tokens: passed. The five group tokens are `#B5E1E6`, `#D8E8C8`, `#D8D1F0`, `#FFEEDB`, and `#FFD4CA`. Within each group, the ribbon, divider, category rails, and category squares use the exact same token. Light and dark modes were both checked.
 - Image quality and asset fidelity: unchanged source avatars, logo, and category imagery; no assets were replaced or approximated.
 - Copy and content: unchanged; all category names, counts, unread states, and Latest-topic content remain live Discourse data.
@@ -48,9 +48,9 @@ No actionable P0, P1, P2, or P3 differences remain.
 - [x] Harmonize all twenty category rails and squares by group.
 - [x] Normalize every category row to the unread-row height.
 - [x] Reduce left-panel title and count weights.
-- [x] Match the left title size to native Latest titles.
+- [x] Establish a smaller left-category scale beneath group headings and Latest titles.
 - [x] Align the group rail to the ribbon's outer edge.
-- [x] Confirm left and right title sizes are exactly equal.
+- [x] Keep body-row rhythm without applying it to the table header.
 - [x] Add 16px of right padding to the header logo link.
 - [x] Verify light and dark modes.
 - [x] Verify collapse/expand and Latest topics.
