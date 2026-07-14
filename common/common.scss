@@ -157,12 +157,18 @@
 
   tr:not(.category-group-heading) {
     td {
-      padding-top: 0.55em;
-      padding-bottom: 0.55em;
+      padding-top: 0.35em;
+      padding-bottom: 0.35em;
     }
 
     .category-description {
       display: none;
+    }
+
+    // Core adds a large gap above the unread badge. It is useful in the
+    // full category layout, but makes this deliberately compact list uneven.
+    .topics .badge-notification {
+      margin-top: 0;
     }
   }
 
