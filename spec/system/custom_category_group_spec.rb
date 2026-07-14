@@ -111,4 +111,18 @@ RSpec.describe "Category Groups", system: true do
 
     expect(page).to have_css(".category-box-heading .emoji[alt='wave']", count: 1)
   end
+
+  it "keeps the native latest topics column beside compact category groups" do
+    SiteSetting.desktop_category_page_style = "categories_and_latest_topics"
+    Fabricate(:topic, category: category)
+
+    visit "/categories"
+
+    expect(page).to have_css(".categories-and-latest .compact-category-groups", count: 1)
+    expect(page).to have_css(".categories-and-latest .latest-topic-list", count: 1)
+    expect(page).to have_css(
+      ".compact-category-groups .custom-category-group-default-categories",
+      count: 1,
+    )
+  end
 end
