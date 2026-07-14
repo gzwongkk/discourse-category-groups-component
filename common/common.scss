@@ -168,8 +168,8 @@
     }
 
     .category {
-      // Core's border sits on the table edge. An inset rail keeps the group
-      // accent visually inside the ribbon/list block instead.
+      // Match the rail to the ribbon's outer edge without changing the table
+      // cell's box model.
       position: relative;
       border-left: 0;
 
@@ -177,7 +177,7 @@
         content: "";
         position: absolute;
         inset-block: 0;
-        inset-inline-start: 0.25em;
+        inset-inline-start: 0;
         width: 3px;
         background: var(--category-badge-color);
       }
@@ -219,6 +219,10 @@
     color: var(--primary);
     font-weight: 500;
   }
+}
+
+.d-header .home-logo-wrapper-outlet .title > a {
+  padding-inline-end: 1em;
 }
 
 [class^="custom-category-group-"] {
