@@ -348,5 +348,49 @@
     .category-list.with-topics {
       display: none;
     }
+
+    .mobile-category-groups {
+      margin: 0;
+
+      .mobile-category-group {
+        margin: 0 0 1.25em;
+      }
+
+      h2 {
+        margin: 0;
+        padding: 0.7em 0.8em;
+        background: var(--category-group-color);
+        color: #263238;
+        font-size: var(--font-0);
+        font-weight: 600;
+        line-height: 1.35;
+      }
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      li {
+        margin: 0;
+        border-bottom: 1px solid var(--primary-low);
+      }
+
+      li > a {
+        display: block;
+        padding: 0.8em;
+        border-left: 3px solid var(--category-group-color);
+        color: var(--primary);
+        font-size: var(--font-0);
+        font-weight: 500;
+        line-height: 1.4;
+      }
+
+      .badge-category__wrapper {
+        font-size: 1em;
+        font-weight: inherit;
+      }
+    }
   }
 }

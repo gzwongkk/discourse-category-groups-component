@@ -66,10 +66,11 @@ export default class CategoriesGroups extends Component {
     }
 
     if (this.mode === "rows") {
-      return (
-        (this.site.mobileView && settings.show_on_mobile) ||
-        categoryPageStyle === "categories_and_latest_topics"
-      );
+      return categoryPageStyle === "categories_and_latest_topics";
+    }
+
+    if (this.mode === "mobile") {
+      return this.site.mobileView && settings.show_on_mobile;
     }
 
     return categoryPageStyle.includes("boxes");
@@ -77,6 +78,10 @@ export default class CategoriesGroups extends Component {
 
   get compactRows() {
     return this.mode === "rows";
+  }
+
+  get mobileList() {
+    return this.mode === "mobile";
   }
 
   groupColor(color, slug) {
@@ -266,6 +271,30 @@ export default class CategoriesGroups extends Component {
             </tbody>
           {{/each}}
         </table>
+      {{else if this.mobileList}}
+        <section class="mobile-category-groups">
+          {{#each this.categoryGroupList as |t|}}
+            <section
+              class="mobile-category-group"
+              style={{this.groupStyle t.color}}
+            >
+              <h2>{{t.name}}</h2>
+              <ul>
+                {{#each t.items as |c|}}
+                  {{#if c.isExtraLink}}
+                    <li class="mobile-extra-link">
+                      <a href={{c.url}}>{{c.title}}</a>
+                    </li>
+                  {{else}}
+                    <li>
+                      <a href={{c.url}}>{{this.categoryName c}}</a>
+                    </li>
+                  {{/if}}
+                {{/each}}
+              </ul>
+            </section>
+          {{/each}}
+        </section>
       {{else}}
         <section class="category-boxes with-logos with-subcategories">
           <div
