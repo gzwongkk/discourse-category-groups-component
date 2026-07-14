@@ -170,16 +170,29 @@
     .category {
       // Core's border sits on the table edge. An inset rail keeps the group
       // accent visually inside the ribbon/list block instead.
+      position: relative;
       border-left: 0;
-      box-shadow: inset 3px 0 0 var(--category-badge-color);
+
+      &::after {
+        content: "";
+        position: absolute;
+        inset-block: 0;
+        inset-inline-start: 0.25em;
+        width: 3px;
+        background: var(--category-badge-color);
+      }
     }
 
     .category h3,
-    .category .category-title-link,
-    .category .badge-category__wrapper {
+    .category .category-title-link {
       font-size: var(--font-up-1);
       font-weight: 500;
       line-height: 1.4;
+    }
+
+    .category .badge-category__wrapper {
+      font-size: 1em;
+      font-weight: 500;
     }
 
     .topics .value {
