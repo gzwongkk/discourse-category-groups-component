@@ -7,6 +7,7 @@ import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
 import CategoryLogo from "discourse/components/category-logo";
+import CategoryUnread from "discourse/components/category-unread";
 import ParentCategoryRow from "discourse/components/parent-category-row";
 import CategoryTitleBefore from "discourse/components/category-title-before";
 import CategoryTitleLink from "discourse/components/category-title-link";
@@ -105,6 +106,10 @@ export default class CategoriesGroups extends Component {
         link: false,
       })
     );
+  }
+
+  categoryStat(category) {
+    return htmlSafe(category.stat);
   }
 
   get categoryGroupList() {
@@ -286,8 +291,22 @@ export default class CategoriesGroups extends Component {
                       <a href={{c.url}}>{{c.title}}</a>
                     </li>
                   {{else}}
-                    <li>
-                      <a href={{c.url}}>{{this.categoryName c}}</a>
+                    <li class="mobile-category-row">
+                      <a class="mobile-category-link" href={{c.url}}>
+                        {{this.categoryName c}}
+                      </a>
+                      <div class="mobile-category-meta">
+                        <a class="mobile-category-count" href={{c.url}}>
+                          {{this.categoryStat c}}
+                        </a>
+                        <CategoryUnread
+                          @category={{c}}
+                          @tagName="div"
+                          @unreadTopicsCount={{c.unreadTopicsCount}}
+                          @newTopicsCount={{c.newTopicsCount}}
+                          class="mobile-category-unread"
+                        />
+                      </div>
                     </li>
                   {{/if}}
                 {{/each}}
