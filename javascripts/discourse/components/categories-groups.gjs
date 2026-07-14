@@ -46,6 +46,7 @@ const ExtraLink = class {
 
 export default class CategoriesGroups extends Component {
   @service router;
+  @service site;
   @service siteSettings;
 
   localizedGroupName(group) {
@@ -65,7 +66,10 @@ export default class CategoriesGroups extends Component {
     }
 
     if (this.mode === "rows") {
-      return categoryPageStyle === "categories_and_latest_topics";
+      return (
+        (this.site.mobileView && settings.show_on_mobile) ||
+        categoryPageStyle === "categories_and_latest_topics"
+      );
     }
 
     return categoryPageStyle.includes("boxes");

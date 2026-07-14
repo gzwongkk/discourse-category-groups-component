@@ -10,9 +10,10 @@ export default class CustomCategoriesRows extends Component {
 
   get useCompactGroups() {
     return (
-      this.site.desktopView &&
-      this.siteSettings.desktop_category_page_style ===
-        "categories_and_latest_topics"
+      (this.site.mobileView && settings.show_on_mobile) ||
+      (this.site.desktopView &&
+        this.siteSettings.desktop_category_page_style ===
+          "categories_and_latest_topics")
     );
   }
 
