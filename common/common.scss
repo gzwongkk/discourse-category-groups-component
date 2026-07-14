@@ -183,13 +183,15 @@
       }
     }
 
-    .category h3,
-    .category .category-title-link {
+    .category h3 {
       font-size: var(--font-up-1);
       font-weight: 500;
       line-height: 1.4;
     }
 
+    .category .category-title-link,
+    .category .category-text-title,
+    .category .category-name,
     .category .badge-category__wrapper {
       font-size: 1em;
       font-weight: 500;
