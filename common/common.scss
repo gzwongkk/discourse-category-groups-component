@@ -157,9 +157,33 @@
   }
 
   tr:not(.category-group-heading) {
+    // Keep every category row on the same rhythm as a row with an unread
+    // indicator, so rows do not collapse when that secondary line is absent.
+    height: 3.45em;
+
     td {
       padding-top: 0.35em;
       padding-bottom: 0.35em;
+      vertical-align: middle;
+    }
+
+    .category {
+      // Core's border sits on the table edge. An inset rail keeps the group
+      // accent visually inside the ribbon/list block instead.
+      border-left: 0;
+      box-shadow: inset 3px 0 0 var(--category-badge-color);
+    }
+
+    .category h3,
+    .category .category-title-link,
+    .category .badge-category__wrapper {
+      font-size: var(--font-up-1);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .topics .value {
+      font-weight: 500;
     }
 
     .category-description {
