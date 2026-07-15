@@ -113,3 +113,12 @@ fancy_styling:
 
 hide_muted_subcategories:
   default: false
+
+hide_category_breadcrumbs:
+  default: true
+
+latest_topics_limit:
+  type: integer
+  default: 20
+  min: 1
+  max: 50

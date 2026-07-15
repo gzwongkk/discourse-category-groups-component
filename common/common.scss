@@ -342,6 +342,18 @@
   }
 }
 
+@if $hide_category_breadcrumbs == "true" {
+  .navigation-categories .category-breadcrumb {
+    display: none;
+  }
+}
+
+.navigation-categories .latest-topic-list {
+  .latest-topic-list-item:nth-of-type(n + #{$latest_topics_limit + 2}) {
+    display: none;
+  }
+}
+
 @if $show_on_mobile == "true" {
   // hides the default categories layout on mobile, so the custom layout appears
   .mobile-view {
