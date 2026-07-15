@@ -348,9 +348,13 @@
   }
 }
 
-.navigation-categories .latest-topic-list {
-  .latest-topic-list-item:nth-of-type(n + #{$latest_topics_limit + 2}) {
-    display: none;
+@for $limit from 1 through 50 {
+  @if "#{$latest_topics_limit}" == "#{$limit}" {
+    .navigation-categories .latest-topic-list {
+      .latest-topic-list-item:nth-of-type(n + #{$limit + 2}) {
+        display: none;
+      }
+    }
   }
 }
 
